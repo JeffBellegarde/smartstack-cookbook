@@ -36,7 +36,7 @@ else
     action  :nothing
 
     environment ({'GEM_HOME' => node.smartstack.gem_home})
-    command     "bundle install --without development"
+    command     "bundle install --without development --binstubs .bin"
   end
 end
 
@@ -58,7 +58,7 @@ node.nerve.enabled_services.each do |service_name|
   check = service['nerve']
   check['zk_hosts'] = node.zookeeper.smartstack_cluster
   check['zk_path'] = service['zk_path']
-  check['host'] = node.ipaddress
+  check['host'] = node.smartstack['ipaddress'] || node.ipaddress
 
   # support multiple copies of the service on one machine with multiple ports in services
   check['ports'] ||= []

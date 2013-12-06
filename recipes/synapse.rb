@@ -66,7 +66,7 @@ else
     action  :nothing
 
     environment ({'GEM_HOME' => node.smartstack.gem_home})
-    command     "bundle install --without development"
+    command     "bundle install --without development --binstubs .bin"
   end
 end
 

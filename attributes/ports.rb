@@ -9,6 +9,9 @@ default.smartstack.ports = {
 
   # moar services
   3333 => 'helloworld',
+
+  3334 => 'discover',
+  3335 => 'discover2',
 }
 
 # also create a mapping going the other way

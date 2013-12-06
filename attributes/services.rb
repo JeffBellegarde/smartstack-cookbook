@@ -24,6 +24,47 @@ default.smartstack.services = {
       ],
     },
   },
+
+  'discover' => {
+    'nerve' => {
+      'port' => '8888',
+      'check_interval' => 0.5,
+      'checks' => [
+                   { 'type' => 'http', 'uri' => '/ping', 'timeout' => 1, 'rise' => 1, 'fall' => 2 },
+                  ],
+    },
+    'synapse' => {
+      'discovery' => { 'method' => 'zookeeper' },
+      'haproxy' => {
+        'server_options' => 'check inter 30s downinter 5s rise 1 fall 1',
+        'listen' => [
+                     'mode http',
+                     'option httpchk GET /ping',
+                     'option log-health-checks',
+                    ],
+      },
+    }
+  },
+  'discover2' => {
+    'nerve' => {
+      'port' => '8888',
+      'check_interval' => 0.5,
+      'checks' => [
+                   { 'type' => 'http', 'uri' => '/ping', 'timeout' => 1, 'rise' => 1, 'fall' => 2 },
+                  ],
+    },
+    'synapse' => {
+      'discovery' => { 'method' => 'zookeeper' },
+      'haproxy' => {
+        'server_options' => 'check inter 30s downinter 5s rise 1 fall 1',
+        'listen' => [
+                     'mode http',
+                     'option httpchk GET /ping',
+                     'option log-health-checks',
+                    ],
+      },
+    }
+  },
 }
 
 # on chef-solo < 11.6, we hack around lack of environment support
